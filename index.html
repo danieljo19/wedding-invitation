@@ -1,247 +1,190 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="id" class="scroll-smooth">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wedding of Alex & Jordan</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300;1,600&family=Plus+Jakarta+Sans:wght@200;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root { --accent: #d4af37; }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #050505; 
+            color: #e5e5e5;
+            overflow-x: hidden;
+        }
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        
+        /* Glassmorphism Effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+        }
 
-<title>Wedding Invitation</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+        /* Custom Swiper Style */
+        .swiper-slide {
+            opacity: 0.4;
+            transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+            transform: scale(0.8);
+        }
+        .swiper-slide-active {
+            opacity: 1;
+            transform: scale(1.05);
+            filter: grayscale(0);
+        }
+        .swiper-pagination-bullet { background: #fff !important; }
+        
+        .parallax-bg {
+            transition: transform 0.1s ease-out;
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- COVER -->
-
-<section class="cover" id="cover">
-
-<div class="cover-left"></div>
-<div class="cover-right"></div>
-
-<div class="cover-content">
-
-<h1>Andre & Sofia</h1>
-<p>Wedding Invitation</p>
-
-<button id="openBtn">Buka Undangan</button>
-
-</div>
-
-</section>
-
-
-<!-- MUSIC -->
-
-<audio id="music" loop>
-<source src="C:\Niel\2026 Project\undangan\musik\sigmamusicart-emotional-piano-music-256262.mp3">
-</audio>
-
-
-<!-- MAIN CONTENT -->
-
-<div id="mainContent">
-
-<!-- GALLERY -->
-
-<section class="gallery">
-
-<h2>Gallery</h2>
-
-<div class="carousel">
-
-<button class="nav left">&#10094;</button>
-
-<div class="carousel-track">
-
-<img src="https://images.unsplash.com/photo-1519741497674-611481863552" class="slide">
-<img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf" class="slide">
-<img src="https://images.unsplash.com/photo-1529636798458-92182e662485" class="slide active">
-<img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc" class="slide">
-<img src="https://images.unsplash.com/photo-1523430410476-0185cb1f6ff9" class="slide">
-
-</div>
-
-<button class="nav right">&#10095;</button>
-
-</div>
-
-</section>
-
-
-<!-- COUPLE -->
-
-<section class="couple">
-
-<div class="person">
-
-<img src="https://randomuser.me/api/portraits/women/44.jpg">
-
-<h3>Sofia</h3>
-
-<p>Putri dari</p>
-<p>Bpk Ahmad & Ibu Siti</p>
-
-</div>
-
-<div class="person">
-
-<img src="https://randomuser.me/api/portraits/men/32.jpg">
-
-<h3>Andre</h3>
-
-<p>Putra dari</p>
-<p>Bpk Budi & Ibu Lina</p>
-
-</div>
-
-</section>
-
-
-<!-- EVENT -->
-
-<section class="event">
-
-<h2>Wedding Event</h2>
-
-<div class="event-card">
-
-<h3>Akad Nikah</h3>
-
-<div class="countdown" id="countdown"></div>
-
-<p class="event-date">
-Saturday, 20 December 2026
-</p>
-
-<p class="event-time">
-08:00 WIB - End
-</p>
-
-<p class="event-location">
-Grand Ballroom Hotel Santika  
-Palembang, Sumatera Selatan
-</p>
-
-<div class="event-buttons">
-
-<a 
-class="btn"
-target="_blank"
-href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Akad+Nikah+Andre+%26+Putri&dates=20261220T010000Z/20261220T040000Z&details=Wedding+Ceremony&location=Grand+Ballroom+Hotel+Santika+Palembang"
->
-Save The Date
-</a>
-
-<a 
-class="btn"
-target="_blank"
-href="https://www.google.com/maps/search/?api=1&query=Hotel+Santika+Palembang"
->
-Navigation Map
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- LOVE STORY -->
-
-<section class="story">
-
-<h2>Our Love Story</h2>
-
-<div class="timeline">
-
-<div class="timeline-item">
-<h4>First Meet</h4>
-<p>2018 kami pertama kali bertemu di kampus.</p>
-</div>
-
-<div class="timeline-item">
-<h4>Relationship</h4>
-<p>2019 kami mulai menjalin hubungan.</p>
-</div>
-
-<div class="timeline-item">
-<h4>Engagement</h4>
-<p>2025 Andre melamar Sofia.</p>
-</div>
-
-</div>
-
-</section>
-
-
-<!-- GIFT -->
-
-<section class="gift">
-
-<h2>Wedding Gift</h2>
-
-<div class="gift-box">
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg">
-
-<p>1234567890</p>
-<p>a.n Andre</p>
-
-</div>
-
-<div class="gift-box">
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/f/f0/Bank_Negara_Indonesia_logo_%282004%29.svg">
-
-<p>987654321</p>
-<p>a.n Sofia</p>
-
-</div>
-
-</section>
-
-
-<!-- WISHES -->
-
-<section class="wishes">
-
-<h2>Wedding Wishes</h2>
-
-<form id="wishForm">
-
-<input type="text" placeholder="Nama Anda" required>
-
-<textarea placeholder="Ucapan"></textarea>
-
-<button type="submit">Kirim</button>
-
-</form>
-
-<div id="wishList"></div>
-
-</section>
-
-</div>
-
-
-<!-- LIGHTBOX -->
-
-<div id="lightbox">
-
-<span id="closeLightbox">&times;</span>
-
-<img id="lightboxImg">
-
-</div>
-
-
-<script src="script.js"></script>
-
+    <section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0 scale-110">
+            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2070" 
+                 class="w-full h-full object-cover opacity-50 parallax-bg" alt="Hero">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/30"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-6" data-aos="zoom-out">
+            <p class="uppercase tracking-[0.5em] text-[10px] md:text-xs mb-6 text-white/70">Join us to celebrate</p>
+            <h1 class="text-6xl md:text-[10rem] font-serif italic mb-4 leading-none tracking-tighter">
+                Alex <span class="text-2xl md:text-5xl block md:inline font-sans not-italic mx-4 text-white/40">&</span> Jordan
+            </h1>
+            <div class="h-[1px] w-20 bg-white/30 mx-auto my-8"></div>
+            <p class="text-sm md:text-lg font-light tracking-[0.3em] uppercase">Saturday, 12 . 12 . 2026</p>
+        </div>
+    </section>
+
+    <section class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-5" data-aos="fade-right">
+                <span class="text-xs uppercase tracking-widest text-amber-500 mb-4 block">Our Story</span>
+                <h2 class="text-4xl md:text-6xl font-serif italic mb-8">Capturing the moments of our life.</h2>
+                <p class="text-gray-400 leading-relaxed font-light text-lg">
+                    Dari pertemuan tidak sengaja di sebuah kedai kopi hingga janji suci di depan altar. Kami mengundang kalian menjadi bagian dari babak baru perjalanan kami.
+                </p>
+            </div>
+            
+            <div class="lg:col-span-7 w-full overflow-hidden" data-aos="fade-left">
+                <div class="swiper mySwiper pb-12">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800" class="rounded-3xl aspect-[3/4] object-cover shadow-2xl grayscale hover:grayscale-0 transition duration-500">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800" class="rounded-3xl aspect-[3/4] object-cover shadow-2xl">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://images.unsplash.com/photo-1465495910483-0d6749ee9f4a?w=800" class="rounded-3xl aspect-[3/4] object-cover shadow-2xl">
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-[#080808] px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-card p-8 md:p-12 group hover:bg-white/5 transition-all duration-500" data-aos="fade-up">
+                    <div class="mb-12 border-b border-white/10 pb-6 flex justify-between items-end">
+                        <h3 class="text-3xl font-serif italic">The Ceremony</h3>
+                        <span class="text-[10px] uppercase tracking-widest opacity-50">08:00 AM</span>
+                    </div>
+                    <p class="text-sm uppercase tracking-widest mb-2 text-amber-200">The Glass Chapel</p>
+                    <p class="text-gray-400 font-light leading-relaxed mb-8">Sudirman Central District, Jakarta Selatan. Lokasi gedung berada di area taman utama.</p>
+                    <button class="w-full md:w-auto px-8 py-3 rounded-full border border-white/20 text-[10px] uppercase tracking-widest group-hover:bg-white group-hover:text-black transition-all">Get Direction</button>
+                </div>
+
+                <div class="glass-card p-8 md:p-12 group hover:bg-white/5 transition-all duration-500" data-aos="fade-up" data-aos-delay="200">
+                    <div class="mb-12 border-b border-white/10 pb-6 flex justify-between items-end">
+                        <h3 class="text-3xl font-serif italic">The Celebration</h3>
+                        <span class="text-[10px] uppercase tracking-widest opacity-50">18:00 PM</span>
+                    </div>
+                    <p class="text-sm uppercase tracking-widest mb-2 text-amber-200">The Grand Ballroom</p>
+                    <p class="text-gray-400 font-light leading-relaxed mb-8">Luxury Hyatt Regency, Jakarta. Parkir tersedia di area Basement 1 & 2.</p>
+                    <button class="w-full md:w-auto px-8 py-3 rounded-full border border-white/20 text-[10px] uppercase tracking-widest group-hover:bg-white group-hover:text-black transition-all">Get Direction</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 px-6 text-center">
+        <div class="max-w-xl mx-auto" data-aos="fade-up">
+            <h2 class="text-5xl font-serif italic mb-4">R.S.V.P</h2>
+            <p class="text-gray-500 text-sm tracking-widest uppercase mb-12">Kindly respond by Dec 1st</p>
+            
+            <form class="space-y-8">
+                <div class="relative">
+                    <input type="text" id="name" class="w-full bg-transparent border-b border-white/20 py-4 focus:border-amber-500 outline-none transition-colors peer placeholder-transparent" placeholder="Name">
+                    <label for="name" class="absolute left-0 top-4 text-gray-500 text-xs uppercase tracking-widest transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-4 peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-amber-500">Full Name</label>
+                </div>
+                
+                <div class="flex flex-col md:flex-row gap-8">
+                    <select class="flex-1 bg-transparent border-b border-white/20 py-4 outline-none focus:border-amber-500 text-sm text-gray-400">
+                        <option class="bg-black">Number of Guests</option>
+                        <option class="bg-black">1 Person</option>
+                        <option class="bg-black">2 Persons</option>
+                    </select>
+                </div>
+
+                <button class="w-full bg-white text-black py-5 rounded-full text-[10px] font-bold uppercase tracking-[0.3em] hover:tracking-[0.5em] transition-all duration-500 shadow-xl">Confirm Attendance</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/5 text-center">
+        <p class="text-[9px] uppercase tracking-[0.8em] text-white/30 italic font-serif">A&J — Eternity</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize Animations
+        AOS.init({ duration: 1200, once: true });
+
+        // Initialize Professional Carousel
+        var swiper = new Swiper(".mySwiper", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            coverflowEffect: {
+                rotate: 0,
+                stretch: 0,
+                depth: 100,
+                modifier: 2,
+                slideShadows: true,
+            },
+            loop: true,
+            autoplay: { delay: 3000 },
+            pagination: { el: ".swiper-pagination", clickable: true },
+            breakpoints: {
+                320: { slidesPerView: 1.2, spaceBetween: 20 },
+                768: { slidesPerView: 2, spaceBetween: 40 },
+                1024: { slidesPerView: 2.5, spaceBetween: 50 }
+            }
+        });
+
+        // Simple Parallax Effect for Hero
+        window.addEventListener('scroll', function() {
+            const parallax = document.querySelector('.parallax-bg');
+            let scrollPosition = window.pageYOffset;
+            parallax.style.transform = 'translateY(' + scrollPosition * 0.4 + 'px)';
+        });
+    </script>
 </body>
 </html>
