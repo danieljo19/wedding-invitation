@@ -1,190 +1,220 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Wedding of Alex & Jordan</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300;1,600&family=Plus+Jakarta+Sans:wght@200;400;600&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,600&family=Plus+Jakarta+Sans:wght@200;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     <style>
-        :root { --accent: #d4af37; }
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: #050505; 
-            color: #e5e5e5;
-            overflow-x: hidden;
-        }
+        :root { --glass: rgba(255, 255, 255, 0.05); }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #050505; color: #fff; overflow-x: hidden; }
         .font-serif { font-family: 'Cormorant Garamond', serif; }
         
-        /* Glassmorphism Effect */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-        }
+        /* Landing Page Crack Effect */
+        #landing { transition: opacity 0.8s ease-in-out; }
+        .crack-line { position: absolute; background: white; pointer-events: none; opacity: 0; }
 
-        /* Custom Swiper Style */
-        .swiper-slide {
-            opacity: 0.4;
-            transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-            transform: scale(0.8);
-        }
-        .swiper-slide-active {
-            opacity: 1;
-            transform: scale(1.05);
-            filter: grayscale(0);
-        }
-        .swiper-pagination-bullet { background: #fff !important; }
+        /* Custom Glass */
+        .glass { background: var(--glass); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
         
-        .parallax-bg {
-            transition: transform 0.1s ease-out;
-        }
+        /* Swiper Gallery */
+        .swiper-slide { width: 280px; height: 400px; border-radius: 20px; overflow: hidden; filter: grayscale(1); transition: 0.5s; }
+        .swiper-slide-active { filter: grayscale(0); transform: scale(1.1); }
+
+        /* Hide Scrollbar */
+        ::-webkit-scrollbar { width: 0; }
+        #main-content { display: none; opacity: 0; }
     </style>
 </head>
 <body>
 
-    <section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0 scale-110">
-            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2070" 
-                 class="w-full h-full object-cover opacity-50 parallax-bg" alt="Hero">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/30"></div>
+    <div id="landing" class="fixed inset-0 z-[100] flex items-center justify-center bg-black overflow-hidden">
+        <div class="absolute inset-0 opacity-40">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552" class="w-full h-full object-cover">
         </div>
-
-        <div class="relative z-10 text-center px-6" data-aos="zoom-out">
-            <p class="uppercase tracking-[0.5em] text-[10px] md:text-xs mb-6 text-white/70">Join us to celebrate</p>
-            <h1 class="text-6xl md:text-[10rem] font-serif italic mb-4 leading-none tracking-tighter">
-                Alex <span class="text-2xl md:text-5xl block md:inline font-sans not-italic mx-4 text-white/40">&</span> Jordan
-            </h1>
-            <div class="h-[1px] w-20 bg-white/30 mx-auto my-8"></div>
-            <p class="text-sm md:text-lg font-light tracking-[0.3em] uppercase">Saturday, 12 . 12 . 2026</p>
+        <div class="relative z-10 text-center px-6">
+            <h2 class="font-serif italic text-4xl mb-4" data-aos="fade-down">The Wedding Of</h2>
+            <h1 class="text-7xl font-serif mb-12" data-aos="zoom-in">Alex & Jordan</h1>
+            <button id="open-btn" class="relative overflow-hidden px-12 py-4 bg-white text-black rounded-full font-bold uppercase tracking-widest hover:scale-110 transition-transform active:scale-95">
+                Buka Undangan
+            </button>
         </div>
-    </section>
+    </div>
 
-    <section class="py-32 px-6 max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-5" data-aos="fade-right">
-                <span class="text-xs uppercase tracking-widest text-amber-500 mb-4 block">Our Story</span>
-                <h2 class="text-4xl md:text-6xl font-serif italic mb-8">Capturing the moments of our life.</h2>
-                <p class="text-gray-400 leading-relaxed font-light text-lg">
-                    Dari pertemuan tidak sengaja di sebuah kedai kopi hingga janji suci di depan altar. Kami mengundang kalian menjadi bagian dari babak baru perjalanan kami.
-                </p>
+    <div id="main-content">
+        
+        <section class="py-20 overflow-hidden">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="font-serif text-5xl italic">Our Moments</h2>
             </div>
-            
-            <div class="lg:col-span-7 w-full overflow-hidden" data-aos="fade-left">
-                <div class="swiper mySwiper pb-12">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800" class="rounded-3xl aspect-[3/4] object-cover shadow-2xl grayscale hover:grayscale-0 transition duration-500">
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800" class="rounded-3xl aspect-[3/4] object-cover shadow-2xl">
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://images.unsplash.com/photo-1465495910483-0d6749ee9f4a?w=800" class="rounded-3xl aspect-[3/4] object-cover shadow-2xl">
-                        </div>
-                    </div>
-                    <div class="swiper-pagination"></div>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=500" class="w-full h-full object-cover"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=500" class="w-full h-full object-cover"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=500" class="w-full h-full object-cover"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1465495910483-0d6749ee9f4a?w=500" class="w-full h-full object-cover"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1522673607200-1648832cee98?w=500" class="w-full h-full object-cover"></div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="py-24 bg-[#080808] px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="glass-card p-8 md:p-12 group hover:bg-white/5 transition-all duration-500" data-aos="fade-up">
-                    <div class="mb-12 border-b border-white/10 pb-6 flex justify-between items-end">
-                        <h3 class="text-3xl font-serif italic">The Ceremony</h3>
-                        <span class="text-[10px] uppercase tracking-widest opacity-50">08:00 AM</span>
-                    </div>
-                    <p class="text-sm uppercase tracking-widest mb-2 text-amber-200">The Glass Chapel</p>
-                    <p class="text-gray-400 font-light leading-relaxed mb-8">Sudirman Central District, Jakarta Selatan. Lokasi gedung berada di area taman utama.</p>
-                    <button class="w-full md:w-auto px-8 py-3 rounded-full border border-white/20 text-[10px] uppercase tracking-widest group-hover:bg-white group-hover:text-black transition-all">Get Direction</button>
+        <section class="py-20 px-6 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 text-center">
+            <div data-aos="fade-right">
+                <div class="w-48 h-48 mx-auto rounded-full border-2 border-white/20 p-2 mb-6">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400" class="w-full h-full object-cover rounded-full">
                 </div>
+                <h3 class="text-3xl font-serif italic mb-2">Alexander Putra</h3>
+                <p class="text-xs uppercase tracking-widest text-gray-500">Putra dari Bpk. Andi & Ibu Siti</p>
+            </div>
+            <div data-aos="fade-left">
+                <div class="w-48 h-48 mx-auto rounded-full border-2 border-white/20 p-2 mb-6">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400" class="w-full h-full object-cover rounded-full">
+                </div>
+                <h3 class="text-3xl font-serif italic mb-2">Jordan Putri</h3>
+                <p class="text-xs uppercase tracking-widest text-gray-500">Putri dari Bpk. Budi & Ibu Maria</p>
+            </div>
+        </section>
 
-                <div class="glass-card p-8 md:p-12 group hover:bg-white/5 transition-all duration-500" data-aos="fade-up" data-aos-delay="200">
-                    <div class="mb-12 border-b border-white/10 pb-6 flex justify-between items-end">
-                        <h3 class="text-3xl font-serif italic">The Celebration</h3>
-                        <span class="text-[10px] uppercase tracking-widest opacity-50">18:00 PM</span>
-                    </div>
-                    <p class="text-sm uppercase tracking-widest mb-2 text-amber-200">The Grand Ballroom</p>
-                    <p class="text-gray-400 font-light leading-relaxed mb-8">Luxury Hyatt Regency, Jakarta. Parkir tersedia di area Basement 1 & 2.</p>
-                    <button class="w-full md:w-auto px-8 py-3 rounded-full border border-white/20 text-[10px] uppercase tracking-widest group-hover:bg-white group-hover:text-black transition-all">Get Direction</button>
+        <section class="py-24 bg-zinc-950 text-center">
+            <div id="countdown" class="flex justify-center gap-4 md:gap-8 mb-16 px-4">
+                <div class="glass p-4 rounded-2xl w-20 md:w-28">
+                    <span id="days" class="text-3xl md:text-5xl font-serif italic">00</span>
+                    <p class="text-[10px] uppercase mt-2 opacity-50">Days</p>
+                </div>
+                <div class="glass p-4 rounded-2xl w-20 md:w-28">
+                    <span id="hours" class="text-3xl md:text-5xl font-serif italic">00</span>
+                    <p class="text-[10px] uppercase mt-2 opacity-50">Hours</p>
+                </div>
+                <div class="glass p-4 rounded-2xl w-20 md:w-28">
+                    <span id="mins" class="text-3xl md:text-5xl font-serif italic">00</span>
+                    <p class="text-[10px] uppercase mt-2 opacity-50">Mins</p>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <section class="py-32 px-6 text-center">
-        <div class="max-w-xl mx-auto" data-aos="fade-up">
-            <h2 class="text-5xl font-serif italic mb-4">R.S.V.P</h2>
-            <p class="text-gray-500 text-sm tracking-widest uppercase mb-12">Kindly respond by Dec 1st</p>
-            
-            <form class="space-y-8">
-                <div class="relative">
-                    <input type="text" id="name" class="w-full bg-transparent border-b border-white/20 py-4 focus:border-amber-500 outline-none transition-colors peer placeholder-transparent" placeholder="Name">
-                    <label for="name" class="absolute left-0 top-4 text-gray-500 text-xs uppercase tracking-widest transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-4 peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-amber-500">Full Name</label>
+            <div class="px-6" data-aos="fade-up">
+                <h2 class="text-2xl tracking-[0.3em] uppercase mb-4">12 Desember 2026</h2>
+                <p class="text-gray-400 mb-8">Pukul 18:00 WIB — Selesai</p>
+                <div class="flex flex-col md:flex-row justify-center gap-4">
+                    <a href="https://calendar.google.com" target="_blank" class="px-8 py-3 glass rounded-full text-xs uppercase tracking-widest hover:bg-white hover:text-black transition">Save The Date</a>
+                    <a href="https://maps.google.com" target="_blank" class="px-8 py-3 glass rounded-full text-xs uppercase tracking-widest hover:bg-white hover:text-black transition">Navigation Maps</a>
                 </div>
-                
-                <div class="flex flex-col md:flex-row gap-8">
-                    <select class="flex-1 bg-transparent border-b border-white/20 py-4 outline-none focus:border-amber-500 text-sm text-gray-400">
-                        <option class="bg-black">Number of Guests</option>
-                        <option class="bg-black">1 Person</option>
-                        <option class="bg-black">2 Persons</option>
-                    </select>
+            </div>
+        </section>
+
+        <section class="py-24 px-6 max-w-4xl mx-auto">
+            <h2 class="text-4xl font-serif italic text-center mb-16">Love Journey</h2>
+            <div class="space-y-12 border-l border-white/10 ml-4 md:ml-0 md:border-none">
+                <div class="relative md:flex items-center justify-between" data-aos="fade-up">
+                    <div class="md:w-[45%] mb-4 md:mb-0 bg-white/5 p-6 rounded-2xl">
+                        <h4 class="font-bold mb-2">First Meet — 2020</h4>
+                        <p class="text-sm text-gray-400">Bertemu pertama kali di sebuah perpustakaan kota saat berebut buku yang sama.</p>
+                    </div>
+                    <div class="absolute left-[-21px] md:static w-10 h-10 bg-white rounded-full flex items-center justify-center text-black font-bold z-10">1</div>
+                    <div class="md:w-[45%]"></div>
                 </div>
+                <div class="relative md:flex items-center justify-between flex-row-reverse" data-aos="fade-up">
+                    <div class="md:w-[45%] mb-4 md:mb-0 bg-white/5 p-6 rounded-2xl text-right">
+                        <h4 class="font-bold mb-2">First Date — 2021</h4>
+                        <p class="text-sm text-gray-400">Kencan pertama yang sederhana namun bermakna di taman hiburan.</p>
+                    </div>
+                    <div class="absolute left-[-21px] md:static w-10 h-10 bg-white rounded-full flex items-center justify-center text-black font-bold z-10">2</div>
+                    <div class="md:w-[45%]"></div>
+                </div>
+            </div>
+        </section>
 
-                <button class="w-full bg-white text-black py-5 rounded-full text-[10px] font-bold uppercase tracking-[0.3em] hover:tracking-[0.5em] transition-all duration-500 shadow-xl">Confirm Attendance</button>
-            </form>
-        </div>
-    </section>
+        <section class="py-24 px-6 text-center">
+            <h2 class="text-4xl font-serif italic mb-12">Digital Gifts</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto font-serif italic text-xl">
+                <div class="glass p-8 rounded-3xl" data-aos="zoom-in">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" class="h-8 mx-auto mb-4 invert">
+                    <p class="mb-2">1234567890</p>
+                    <p class="text-xs font-sans not-italic tracking-widest uppercase opacity-50">A/N Alexander Putra</p>
+                </div>
+                <div class="glass p-8 rounded-3xl" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://upload.wikimedia.org/wikipedia/id/f/fa/Bank_Mandiri_logo.svg" class="h-8 mx-auto mb-4 invert">
+                    <p class="mb-2">0987654321</p>
+                    <p class="text-xs font-sans not-italic tracking-widest uppercase opacity-50">A/N Jordan Putri</p>
+                </div>
+            </div>
+        </section>
 
-    <footer class="py-12 border-t border-white/5 text-center">
-        <p class="text-[9px] uppercase tracking-[0.8em] text-white/30 italic font-serif">A&J — Eternity</p>
-    </footer>
+        <section class="py-24 px-6 max-w-2xl mx-auto">
+            <h2 class="text-4xl font-serif italic text-center mb-12">Wishes</h2>
+            <div class="glass p-8 rounded-3xl">
+                <input type="text" placeholder="Nama Anda" class="w-full bg-transparent border-b border-white/20 py-4 mb-6 outline-none focus:border-white transition">
+                <textarea placeholder="Berikan ucapan terbaik..." class="w-full bg-transparent border-b border-white/20 py-4 mb-6 outline-none focus:border-white transition h-32"></textarea>
+                <button class="w-full bg-white text-black py-4 rounded-full font-bold uppercase tracking-widest text-xs">Kirim Ucapan</button>
+            </div>
+        </section>
+
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
     <script>
-        // Initialize Animations
-        AOS.init({ duration: 1200, once: true });
+        // CRACK EFFECT & REVEAL
+        document.getElementById('open-btn').addEventListener('click', function() {
+            const landing = document.getElementById('landing');
+            const main = document.getElementById('main-content');
+            
+            // GSAP Crack Animation
+            for(let i=0; i<15; i++) {
+                let line = document.createElement('div');
+                line.className = 'crack-line';
+                line.style.left = '50%';
+                line.style.top = '50%';
+                line.style.width = Math.random() * 300 + 'px';
+                line.style.height = '1px';
+                line.style.transform = `rotate(${Math.random() * 360}deg)`;
+                landing.appendChild(line);
+                
+                gsap.to(line, {
+                    opacity: 1,
+                    scaleX: 2,
+                    duration: 0.2,
+                    ease: "power2.out"
+                });
+            }
 
-        // Initialize Professional Carousel
+            gsap.to(landing, {
+                opacity: 0,
+                duration: 1,
+                onComplete: () => {
+                    landing.style.display = 'none';
+                    main.style.display = 'block';
+                    gsap.to(main, { opacity: 1, duration: 1.5 });
+                    AOS.init({ duration: 1000, once: true });
+                }
+            });
+        });
+
+        // SWIPER
         var swiper = new Swiper(".mySwiper", {
             effect: "coverflow",
-            grabCursor: true,
             centeredSlides: true,
             slidesPerView: "auto",
-            coverflowEffect: {
-                rotate: 0,
-                stretch: 0,
-                depth: 100,
-                modifier: 2,
-                slideShadows: true,
-            },
+            coverflowEffect: { rotate: 0, stretch: 0, depth: 100, modifier: 2.5, slideShadows: true },
             loop: true,
-            autoplay: { delay: 3000 },
-            pagination: { el: ".swiper-pagination", clickable: true },
-            breakpoints: {
-                320: { slidesPerView: 1.2, spaceBetween: 20 },
-                768: { slidesPerView: 2, spaceBetween: 40 },
-                1024: { slidesPerView: 2.5, spaceBetween: 50 }
-            }
+            autoplay: { delay: 2500 }
         });
 
-        // Simple Parallax Effect for Hero
-        window.addEventListener('scroll', function() {
-            const parallax = document.querySelector('.parallax-bg');
-            let scrollPosition = window.pageYOffset;
-            parallax.style.transform = 'translateY(' + scrollPosition * 0.4 + 'px)';
-        });
+        // COUNTDOWN
+        const targetDate = new Date("Dec 12, 2026 18:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+            document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById('mins').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        }, 1000);
     </script>
 </body>
 </html>
